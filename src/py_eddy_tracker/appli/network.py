@@ -5,7 +5,7 @@ Entry point to create and manipulate observations network
 
 import logging
 
-from numpy import in1d, zeros
+from numpy import isin, zeros
 
 from .. import EddyParser
 from ..observations.network import Network, NetworkObservations
@@ -231,7 +231,7 @@ def run_compare(ref, others):
         m = other_segu == -1
         ref_track_no_match, _ = ref_.unique_segment_to_id(ref_segu[m])
         ref_segu, other_segu = ref_segu[~m], other_segu[~m]
-        m = ~in1d(ref_id, ref_track_no_match)
+        m = ~isin(ref_id, ref_track_no_match)
         out["same NS(N)"] = m.sum()
         out["same NS(Obs)"] = ref.network_size(ref_id[m]).sum()
 

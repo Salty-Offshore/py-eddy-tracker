@@ -11,7 +11,7 @@ from os.path import basename, dirname, exists, join as join_path
 from re import compile as re_compile
 
 from netCDF4 import Dataset
-from numpy import bincount, bytes_, empty, in1d, unique
+from numpy import bincount, bytes_, empty, isin, unique
 from yaml import safe_load
 
 from .. import EddyParser, identify_time
@@ -402,7 +402,7 @@ def get_group(
     i2_, nb2 = unique(i2, return_counts=True)
     i1_multi = i1_[nb1 >= 2]
     i2_multi = i2_[nb2 >= 2]
-    m_multi = in1d(i1, i1_multi) + in1d(i2, i2_multi)
+    m_multi = isin(i1, i1_multi) + isin(i2, i2_multi)
 
     # Low scores
     m_low = score < low

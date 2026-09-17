@@ -29,7 +29,7 @@ from numpy import (
     floor,
     histogram,
     histogram2d,
-    in1d,
+    isin,
     isnan,
     linspace,
     ma,
@@ -2016,7 +2016,7 @@ class EddiesObservations(object):
                 return filter1[filter2[filter1]]
             # index case
             else:
-                return filter1[in1d(filter1, filter2)]
+                return filter1[isin(filter1, filter2)]
 
     def merge_filters(self, *filters):
         """
